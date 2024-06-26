@@ -1,5 +1,5 @@
 function NewComp() {
-  return <div></div>;
+  return <div>ALEX</div>;
 }
 
 export default NewComp;
