@@ -111,6 +111,7 @@ function CreateOrder() {
               ? 'placeing order...'
               : `Order now for ${formatCurrency(totalPrice)}`}
           </Button>
+          <div></div>
         </div>
       </Form>
     </div>
