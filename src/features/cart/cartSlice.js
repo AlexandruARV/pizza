@@ -24,14 +24,17 @@ const cartSlice = createSlice({
       state.cart = state.cart.filter((item) => item.pizzaId != action.payload);
     },
     increaseItemQuantity(state, action) {
-      const item = state.cart.find((item) => item === action.payload);
+      const item = state.cart.find((item) => item.pizzaId === action.payload);
       item.quantity++;
       item.totalPrice = item.quantity * item.unitPrice;
     },
     decreseItemQuantity(state, action) {
-      const item = state.cart.find((item) => item === action.payload);
+      const item = state.cart.find((item) => item.pizzaId === action.payload);
+
       item.quantity--;
       item.totalPrice = item.quantity * item.unitPrice;
+      if (item.quantity === 0)
+        cartSlice.caseReducers.deleteItems(state, action);
     },
     clearCart(state) {
       state.cart = [];
