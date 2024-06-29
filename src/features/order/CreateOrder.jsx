@@ -144,6 +144,15 @@ function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)}></input>
+          <input
+            type="hidden"
+            name="position"
+            value={
+              position.longitude && position.latitude
+                ? `${position.latitude},${position.longitude}`
+                : ''
+            }
+          ></input>
           <Button disabled={isSubmitting || isLoadingAdress} type="primary">
             {isSubmitting
               ? 'placeing order...'
@@ -180,7 +189,7 @@ export async function action({ request }) {
   // use dispatch hook
 
   store.dispatch(clearCart());
-
+  console.log(newOrder);
   return redirect(`/order/${newOrder.id}`);
 }
 
